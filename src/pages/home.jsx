@@ -18,8 +18,8 @@ function Home() {
     <div className='AppBar'><Navbar/>
     <div className="container">
 
-      <h1>Red de Servicios</h1>
-      <label htmlFor="nombre">Nombre:</label>
+      <h1>Bienvenido a Red de Servicios</h1>
+      <label htmlFor="nombre">Ingresa tu nombre:</label>
       <input
         type="text"
         id="nombre"
@@ -31,7 +31,6 @@ function Home() {
       <button className="myButton" onClick={handleSolicitarClick}>
         Solicitar Servicio
       </button>
-      <br />
       <br />
       <button className="myButton" onClick={handleOfrecerClick}>
         Ofrecer Servicio

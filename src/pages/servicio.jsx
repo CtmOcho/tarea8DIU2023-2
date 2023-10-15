@@ -21,9 +21,10 @@ function SeleccionarServicio() {
     gasfiteriaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=Gasfiteria`;
   }, []);
 
-  return (    <div className='AppBar'><Navbar/>
+  return (
+    <div className='AppBar'><Navbar/>
     <div className="container">
-      <h1>Red de Servicios</h1>
+      <br />
       <h2>¡Hola, <span id="nombre-usuario"></span>!</h2>
       <p>Estás <span id="accion"></span> un servicio</p>
       <p>Selecciona el tipo de servicio:</p>
@@ -32,6 +33,7 @@ function SeleccionarServicio() {
           Jardinería
         </button>
       </a>
+
       <a href="#" id="gasfiteria-link">
         <button className="myButton" id="gasfiteria">
           Gasfitería

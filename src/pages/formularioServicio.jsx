@@ -40,7 +40,7 @@ function FormularioServicio() {
       if (accion === 'ofrecer') {
          confirmacion = `Acción: ${accionConfirmacion}\nNombre: ${usuario}\nFecha: ${fechaSeleccionada}\nServicio: ${servic}`;   
       }else{
-         horaSeleccionada = horaInput.value;
+         horaSeleccionada = horaInput.value;soli
          confirmacion = `Acción: ${accionConfirmacion}\nNombre: ${usuario}\nFecha: ${fechaSeleccionada}\nHora: ${horaSeleccionada}\nServicio: ${servic}`;
       }
       const confirmado = window.confirm(`¿Estás seguro de estos datos?\n\n${confirmacion}`);
@@ -66,17 +66,18 @@ function FormularioServicio() {
   return (
     <div className='AppBar'><Navbar/>
     <div className="container">
-      <h1>Red de Servicios</h1>
-      <h2>¡Hola, {nombreUsuario}!</h2>
+      <br />
       <h2>Servicio seleccionado: {servicio}</h2>
       <div>
         <label htmlFor="fecha">Fecha:</label>
         <input type="date" id="fecha" placeholder="Selecciona una fecha" />
       </div>
+      <br />
       <div id="hora_div" >
         <label htmlFor="hora">Hora:</label>
         <input type="time" id="hora" />
       </div>
+      <br />
       <button className="myButton" id="solicitar" ></button>
     </div></div>
   );

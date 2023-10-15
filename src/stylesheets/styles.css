@@ -1,17 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito&display=swap');
 
 @font-face {
-	font-family: "GabaritoRegular";
-	src: 	
-		local("GabaritoRegular"),
-		url("../fonts/Gabarito/Gabarito-Regular.ttf"),
-		format("truetype");
+    font-family: 'Gabarito', sans-serif;
 	font-weight: normal;	
 }
 
-h1{margin-top: 100px;}
+h1{margin-top: 100px;
+    color: #003554}
+
 .container {
 	font-size: x-large;
-	font-family: "GabaritoRegular";
+	font-family: "Gabarito";
 	text-align: center;
 	background-color: #fffffff6;
     min-height: 100vh;
@@ -22,6 +21,13 @@ a {
 	text-decoration: inherit;
 }
 
+container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
 .myButton {
 	box-shadow: 0px 10px 14px -7px #3e7327;
 	background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
@@ -39,6 +45,7 @@ a {
 	padding:6px 12px;
 	text-decoration:inherit;
 	text-shadow:0px 1px 0px #5b8a3c;
+    margin: 10px;
 }
 .myButton:hover {
 	background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);

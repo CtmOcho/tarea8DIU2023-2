@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import '../stylesheets/styles.css';
+import Navbar from '../components/Appbar';
 
 function SeleccionarServicio() {
   useEffect(() => {
@@ -20,7 +21,7 @@ function SeleccionarServicio() {
     gasfiteriaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=Gasfiteria`;
   }, []);
 
-  return (
+  return (    <div className='AppBar'><Navbar/>
     <div className="container">
       <h1>Red de Servicios</h1>
       <h2>¡Hola, <span id="nombre-usuario"></span>!</h2>
@@ -36,7 +37,7 @@ function SeleccionarServicio() {
           Gasfitería
         </button>
       </a>
-    </div>
+    </div></div>
   );
 }
 

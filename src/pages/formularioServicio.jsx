@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import '../stylesheets/styles.css';
+import Navbar from '../components/Appbar';
 
 function FormularioServicio() {
   const [nombreUsuario, setNombreUsuario] = useState('');
@@ -15,7 +16,11 @@ function FormularioServicio() {
     setNombreUsuario(params.get('nombre'));
     setServicio(params.get('servicio'));
     setAccion(params.get('accion'));
+    const div_hora = document.getElementById("hora_div");
 
+    if (accion === 'ofrecer') {
+      div_hora.setAttribute('hidden','true');
+    }
     const fechaInput = document.getElementById('fecha');
     const horaInput = document.getElementById('hora');
 
@@ -27,18 +32,28 @@ function FormularioServicio() {
 
     const confirmarServicio = () => {
       const fechaSeleccionada = fechaInput.value;
-      const horaSeleccionada = horaInput.value;
       const accionConfirmacion = accion === 'solicitar' ? 'Solicitando Servicio' : 'Ofreciendo Servicio';
       const usuario = nombreUsuario;
       const servic = servicio;
-
-      const confirmacion = `Acción: ${accionConfirmacion}\nNombre: ${usuario}\nFecha: ${fechaSeleccionada}\nHora: ${horaSeleccionada}\nServicio: ${servic}`;
-
+      let confirmacion;
+      let horaSeleccionada;
+      if (accion === 'ofrecer') {
+         confirmacion = `Acción: ${accionConfirmacion}\nNombre: ${usuario}\nFecha: ${fechaSeleccionada}\nServicio: ${servic}`;   
+      }else{
+         horaSeleccionada = horaInput.value;
+         confirmacion = `Acción: ${accionConfirmacion}\nNombre: ${usuario}\nFecha: ${fechaSeleccionada}\nHora: ${horaSeleccionada}\nServicio: ${servic}`;
+      }
       const confirmado = window.confirm(`¿Estás seguro de estos datos?\n\n${confirmacion}`);
 
       if (confirmado) {
         // Redirige a la página "4.html" con los valores confirmados en la URL
-        const url = `/confirmacion?accion=${accion}&nombre=${nombreUsuario}&fecha=${fechaSeleccionada}&hora=${horaSeleccionada}&servicio=${servicio}`;
+        let url;
+        if (accion === 'ofrecer') {
+          url = `/confirmacion?accion=${accion}&nombre=${nombreUsuario}&fecha=${fechaSeleccionada}&servicio=${servicio}`;
+        }else{
+
+          url = `/confirmacion?accion=${accion}&nombre=${nombreUsuario}&fecha=${fechaSeleccionada}&hora=${horaSeleccionada}&servicio=${servicio}`;
+        }
         window.location.href = url;
       }
     };
@@ -49,6 +64,7 @@ function FormularioServicio() {
   }, [accion, nombreUsuario, servicio]);
 
   return (
+    <div className='AppBar'><Navbar/>
     <div className="container">
       <h1>Red de Servicios</h1>
       <h2>¡Hola, {nombreUsuario}!</h2>
@@ -57,12 +73,12 @@ function FormularioServicio() {
         <label htmlFor="fecha">Fecha:</label>
         <input type="date" id="fecha" placeholder="Selecciona una fecha" />
       </div>
-      <div>
+      <div id="hora_div" >
         <label htmlFor="hora">Hora:</label>
         <input type="time" id="hora" />
       </div>
       <button className="myButton" id="solicitar" ></button>
-    </div>
+    </div></div>
   );
 }
 

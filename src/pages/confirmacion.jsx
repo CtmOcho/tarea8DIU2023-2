@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import '../stylesheets/styles.css';
 import okImage from '../assets/ok.png';
+import { display } from '@mui/system';
+import Navbar from '../components/Appbar';
 
 
 function ConfirmacionSolicitud() {
@@ -10,20 +12,27 @@ function ConfirmacionSolicitud() {
     const nombre = params.get('nombre');
     const servicio = params.get('servicio');
     const fecha = params.get('fecha');
-    const hora = params.get('hora');
     const accion = params.get('accion');
-
+    let hora;
+    if (accion === 'solicitar'){
+      document.getElementById('p_hora').removeAttribute('hidden'); 
+      hora = params.get('hora');
+      document.getElementById('hora').textContent = hora;
+    }
+    
     const accionConfirmacion = accion === 'solicitar' ? 'Solicitando Servicio' : 'Ofreciendo Servicio';
-
-    // Actualizar los elementos HTML con los valores
+    
     document.getElementById('nombre').textContent = nombre;
     document.getElementById('servicio').textContent = servicio;
     document.getElementById('fecha').textContent = fecha;
-    document.getElementById('hora').textContent = hora;
     document.getElementById('accion').textContent = accionConfirmacion;
+
+
+    // Actualizar los elementos HTML con los valores
   }, []);
 
   return (
+    <div className='AppBar'><Navbar/>
     <div className="container">
       <h1>Red de Servicios</h1>
       <h2>Detalles de la solicitud confirmada:</h2>
@@ -36,7 +45,7 @@ function ConfirmacionSolicitud() {
       <p>
         <strong>Fecha:</strong> <span id="fecha"></span>
       </p>
-      <p>
+      <p id="p_hora" hidden>
         <strong>Hora:</strong> <span id="hora"></span>
       </p>
       <p>
@@ -48,7 +57,7 @@ function ConfirmacionSolicitud() {
           <button className="myButton">Volver a inicio</button>
         </a>
       </p>
-    </div>
+    </div></div>
   );
 }
 

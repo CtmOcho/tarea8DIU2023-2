@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../stylesheets/styles.css';
-
+import { AppBar } from '@mui/material';
+import Navbar from '../components/Appbar';
 function Home() {
   const [nombre, setNombre] = useState('');
   
@@ -13,7 +14,10 @@ function Home() {
   };
 
   return (
+    
+    <div className='AppBar'><Navbar/>
     <div className="container">
+
       <h1>Red de Servicios</h1>
       <label htmlFor="nombre">Nombre:</label>
       <input
@@ -32,7 +36,7 @@ function Home() {
       <button className="myButton" onClick={handleOfrecerClick}>
         Ofrecer Servicio
       </button>
-    </div>
+    </div></div>
   );
 }
 

@@ -1,0 +1,54 @@
+
+@font-face {
+	font-family: "GabaritoRegular";
+	src: 	
+		local("GabaritoRegular"),
+		url("../fonts/Gabarito/Gabarito-Regular.ttf"),
+		format("truetype");
+	font-weight: normal;	
+}
+
+
+body {
+	background-color: #FAF9F7;
+}
+
+.container {
+	font-size: x-large;
+	font-family: "GabaritoRegular";
+	text-align: center;
+	background-color: #FAF9F7;
+    min-height: 100vh;
+	text-decoration: none;
+}
+
+a {
+	text-decoration: inherit;
+}
+
+.myButton {
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background:linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+	background-color:#77b55a;
+	border-radius:12px;
+	border:1px solid #4b8f29;
+	display:inline-block;
+	height: 100%;
+	width: fit-content;
+	cursor:pointer;
+	color:#FFFFFF;
+	font-family:Arial;
+	font-size:x-large;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:inherit;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+	background-color:#FB5235;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}

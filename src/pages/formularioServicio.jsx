@@ -75,7 +75,7 @@ function FormularioServicio() {
       <br />
       <div id="hora_div" >
         <label htmlFor="hora">Hora:</label>
-        <input type="time" id="hora" />
+        <input type="time" id="hora" value="24:00"/>
       </div>
       <br />
       <button className="myButton" id="solicitar" ></button>

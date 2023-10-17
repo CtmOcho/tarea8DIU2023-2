@@ -34,7 +34,7 @@ function ConfirmacionSolicitud() {
   return (
     <div className='AppBar'><Navbar/>
     <div className="container">
-      <h1>Red de Servicios</h1>
+      <br />
       <h2>Detalles de la solicitud confirmada:</h2>
       <p>
         <strong>Nombre:</strong> <span id="nombre"></span>

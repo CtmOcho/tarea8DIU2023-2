@@ -5,6 +5,8 @@ import HomePage from '../pages/home'
 import Servicio from '../pages/servicio'
 import Formulario from '../pages/formularioServicio'
 import Confirmacion from '../pages/confirmacion'
+import ListaServicios from '../pages/listaServicios'
+import Calificacion from '../pages/calificar'
 
 
 const AppRouter = () => {
@@ -15,6 +17,9 @@ const AppRouter = () => {
         <Route path='/servicio' element={<Servicio />} />
         <Route path='/formulario' element={<Formulario />} />
         <Route path='/confirmacion' element={<Confirmacion/>} />
+        <Route path='/listaServicios' element={<ListaServicios/>} />
+        <Route path='/calificar' element={<Calificacion/>} />
+
       </Routes>
     </BrowserRouter>
   )

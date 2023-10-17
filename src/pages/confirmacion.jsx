@@ -14,10 +14,16 @@ function ConfirmacionSolicitud() {
     const fecha = params.get('fecha');
     const accion = params.get('accion');
     let hora;
+    let trabajador;
     if (accion === 'solicitar'){
-      document.getElementById('p_hora').removeAttribute('hidden'); 
       hora = params.get('hora');
       document.getElementById('hora').textContent = hora;
+      document.getElementById('p_hora').removeAttribute('hidden'); 
+
+      trabajador = params.get('trabajador')
+      document.getElementById('trabajador').textContent = trabajador;
+      document.getElementById('p_trabajador').removeAttribute('hidden'); 
+
     }
     
     const accionConfirmacion = accion === 'solicitar' ? 'Solicitando Servicio' : 'Ofreciendo Servicio';
@@ -37,8 +43,13 @@ function ConfirmacionSolicitud() {
       <h1>Red de Servicios</h1>
       <h2>Detalles de la solicitud confirmada:</h2>
       <p>
-        <strong>Nombre:</strong> <span id="nombre"></span>
+        <strong>Nombre Solicitante:</strong> <span id="nombre"></span>
       </p>
+      <div id='p_trabajador' hidden>
+      <p>
+        <strong>Nombre Trabajador:</strong> <span id="trabajador"></span>
+      </p>
+      </div>
       <p>
         <strong>Servicio:</strong> <span id="servicio"></span>
       </p>

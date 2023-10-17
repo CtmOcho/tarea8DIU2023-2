@@ -38,7 +38,7 @@ function FormularioServicio() {
       let confirmacion;
       let horaSeleccionada;
       if (accion === 'ofrecer') {
-         confirmacion = `Acción: ${accionConfirmacion}\nNombre: ${usuario}\nFecha: ${fechaSeleccionada}\nServicio: ${servic}`;   
+         confirmacion = `Nombre: ${usuario}\nFecha: ${fechaSeleccionada}\nServicio: ${servic}\nAcción: ${accionConfirmacion}`;   
       }else{
          horaSeleccionada = horaInput.value;soli
          confirmacion = `Acción: ${accionConfirmacion}\nNombre: ${usuario}\nFecha: ${fechaSeleccionada}\nHora: ${horaSeleccionada}\nServicio: ${servic}`;

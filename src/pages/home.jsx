@@ -27,7 +27,6 @@ function Home() {
     
     <div className='AppBar'><Navbar/>
     <div className="container">
-
       <h1>Bienvenido a Red de Servicios</h1>
       <label htmlFor="nombre">Ingresa tu nombre:</label>
       <input
@@ -36,8 +35,6 @@ function Home() {
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
       />
-      <br />
-      <br />
       <button className="myButton" onClick={handleSolicitarClick}>
         Solicitar Servicio
       </button>

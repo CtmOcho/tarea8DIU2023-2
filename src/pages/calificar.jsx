@@ -47,21 +47,21 @@ const ServicioDetalle = () => {
             <div className="container">
                 <h2>Calificaciones pendientes</h2>
                 <ToastContainer />
-                <table>
+                <table style={{width:"100%"}}>
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Fecha</th>
-                            <th>Calificación</th>
-                            <th>Acciones</th>
+                            <th className="cell">Nombre</th>
+                            <th className="cell">Fecha</th>
+                            <th className="cell">Calificación</th>
+                            <th className="cell">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {data.map((servicio, index) => (
                             <tr key={index}>
-                                <td>{servicio.nombre}</td>
-                                <td>{servicio.fecha}</td>
-                                <td>
+                                <td className='cell'>{servicio.nombre}</td>
+                                <td className='cell'>{servicio.fecha}</td>
+                                <td className='cell'>
                                     <div className="estrellas">
                                         {[1, 2, 3, 4, 5].map((valor) => (
                                             <span

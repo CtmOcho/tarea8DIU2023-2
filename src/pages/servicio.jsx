@@ -16,9 +16,13 @@ function SeleccionarServicio() {
 
     const jardineriaLink = document.getElementById('jardineria-link');
     const gasfiteriaLink = document.getElementById('gasfiteria-link');
-
-    jardineriaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=Jardineria`;
-    gasfiteriaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=Gasfiteria`;
+    if (accion === 'solicitar'){ 
+      jardineriaLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=jardineria`;
+      gasfiteriaLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=gasfiteria`;
+    }else{
+      jardineriaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=jardineria`;
+      gasfiteriaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=gasfiteria`;
+    }
   }, []);
 
   return (

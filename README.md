@@ -1,7 +1,7 @@
 # Tarea8DIU2023-2
 Integrantes:
 - Leandro Espinoza 201973556-3
-- Daniel Herrera 2019735XX-X
+- Daniel Herrera 201973616-7
 - Octavio Villablanca 201973532-2
 
 Tarea 8 - Prototipo React PMV

@@ -7,11 +7,11 @@ import LoadingScreen from '../components/loadingScreen';
 
 
 function formatDateToDDMMYYYY(dateString) {
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Agrega 1 ya que en JavaScript los meses van de 0 a 11
-    const year = date.getFullYear();
-    return `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
+    const dateParts = dateString.split('-'); // Divide la cadena por guiones
+    const year = dateParts[0];
+    const month = dateParts[1];
+    const day = dateParts[2];
+    return `${day}/${month}/${year}`;
   }
   
 
@@ -22,6 +22,7 @@ function ConfirmacionSolicitud() {
         const nombre = params.get('nombre');
         const servicio = params.get('servicio');
         const fecha = params.get('fecha');
+        console.log(fecha);
         const accion = params.get('accion');
         let hora;
         let trabajador;
@@ -34,13 +35,17 @@ function ConfirmacionSolicitud() {
             document.getElementById('trabajador').textContent = trabajador;
             document.getElementById('p_trabajador').removeAttribute('hidden');
 
+            document.getElementById('fecha').textContent = formatDateToDDMMYYYY(fecha); // Formatea la fecha;
+        console.log(formatDateToDDMMYYYY(fecha));
+
+        }else{
+            document.getElementById('fecha').textContent = fecha;
         }
 
         const accionConfirmacion = accion === 'solicitar' ? 'Solicitando Servicio' : 'Ofreciendo Servicio';
 
         document.getElementById('nombre').textContent = nombre;
         document.getElementById('servicio').textContent = servicio;
-        document.getElementById('fecha').textContent = formatDateToDDMMYYYY(fecha); // Formatea la fecha;
         document.getElementById('accion').textContent = accionConfirmacion;
 
 

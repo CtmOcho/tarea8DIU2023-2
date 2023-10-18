@@ -12,10 +12,19 @@ const data = [
     { servicio: 'jardineria', nombre: 'Juan', fecha: '2023-10-18' },
     { servicio: 'gasfiteria', nombre: 'Diego', fecha: '2023-10-19' },
     { servicio: 'gasfiteria', nombre: 'Alonso', fecha: '2023-10-17' },
-    { servicio: 'otros', nombre: 'Hola', fecha: '2023-10-18' },
-    { servicio: 'otros', nombre: 'Adios', fecha: '2023-10-19' },
+    { servicio: 'aseo', nombre: 'Marta', fecha: '2023-10-18' },
+    { servicio: 'aseo', nombre: 'Maria', fecha: '2023-10-19' },
 ];
 
+
+function formatDateToDDMMYYYY(dateString) {
+    const dateParts = dateString.split('-'); // Divide la cadena por guiones
+    const year = dateParts[0];
+    const month = dateParts[1];
+    const day = dateParts[2];
+    return `${day}/${month}/${year}`;
+  }
+  
 
 const ServicioDetalle = () => {
     const params = new URLSearchParams(window.location.search);
@@ -68,7 +77,7 @@ const ServicioDetalle = () => {
                         {data.map((servicio, index) => (
                             <tr key={index}>
                                 <td className='cell'>{servicio.nombre}</td>
-                                <td className='cell'>{servicio.fecha}</td>
+                                <td className='cell'>{formatDateToDDMMYYYY(servicio.fecha)}</td>
                                 <td className='cell'>
                                     <div className="estrellas">
                                         {[1, 2, 3, 4, 5].map((valor) => (

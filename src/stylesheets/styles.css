@@ -113,7 +113,7 @@ a {
   }
   
   .estrella.activa {
-	color: gold; /* Cambia el color de la estrella activa */
+	color: #F0A202; /* Cambia el color de la estrella activa */
   }
 
 .white-overlay {

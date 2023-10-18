@@ -34,16 +34,14 @@ const ServicioDetalle = () => {
     const handleCalificar = (index, servicio) => {
         setServiciosCalificados(prevServiciosCalificados => [...prevServiciosCalificados, servicio]);
         toast.success('Calificación exitosa', {
-            position: toast.POSITION.TOP_CENTER
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1500
         });
     };
 
     return (
         <div className='AppBar'>
             <Navbar />
-            <br />
-            <br />
-
             <div className="container">
                 <h2>Calificaciones pendientes</h2>
                 <ToastContainer />

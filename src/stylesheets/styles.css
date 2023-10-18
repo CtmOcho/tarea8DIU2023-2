@@ -20,6 +20,7 @@ h1{
     justify-content: center;
     align-items: center;
     align-content: center;
+    margin-top: 1.5em;
 }
 
 .app-bar {
@@ -43,7 +44,7 @@ a {
 	border:1px solid #4b8f29;
 	display:inline-block;
 	height: 100%;
-	width: fit-content;
+	width: 8em;
 	cursor:pointer;
 	color:#FFFFFF;
 	font-family:Arial;

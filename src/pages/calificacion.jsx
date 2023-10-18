@@ -8,8 +8,6 @@ const data = [
     { servicio: 'jardineria', nombre: 'Juan', fecha: '2023-10-18' },
     { servicio: 'gasfiteria', nombre: 'Diego', fecha: '2023-10-19' },
     { servicio: 'gasfiteria', nombre: 'Alonso', fecha: '2023-10-17' },
-    { servicio: 'otros', nombre: 'Hola', fecha: '2023-10-18' },
-    { servicio: 'otros', nombre: 'Adios', fecha: '2023-10-19' },
 ];
 
 const ServicioDetalle = () => {

@@ -14,7 +14,7 @@ const LoadingScreen = () => {
     }, []); // Empty dependency array ensures this effect runs once on component mount
     return (
         <div>
-            {overlayVisible && <div className="white-overlay"><BeatLoader color="#36d7b7" /></div>}
+            {overlayVisible && <div className="white-overlay"><BeatLoader size={30} color="#36d7b7" /></div>}
         </div>
     );
 }

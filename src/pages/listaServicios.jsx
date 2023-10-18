@@ -2,14 +2,34 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../stylesheets/styles.css';
 import Navbar from '../components/Appbar';
+import LoadingScreen from '../components/loadingScreen';
 
 const data = [
-    { servicio: 'jardineria', nombre: 'Pedro', fecha: '2023-10-17' },
-    { servicio: 'jardineria', nombre: 'Juan', fecha: '2023-10-18' },
-    { servicio: 'gasfiteria', nombre: 'Diego', fecha: '2023-10-19' },
-    { servicio: 'gasfiteria', nombre: 'Alonso', fecha: '2023-10-17' },
-    { servicio: 'otros', nombre: 'Hola', fecha: '2023-10-18' },
-    { servicio: 'otros', nombre: 'Adios', fecha: '2023-10-19' },
+    { servicio: 'aseo', nombre: 'Luisa', fecha: '2023-10-24' },
+    { servicio: 'aseo', nombre: 'Marta', fecha: '2023-10-25' },
+    { servicio: 'aseo', nombre: 'Carlos', fecha: '2023-10-26' },
+    { servicio: 'aseo', nombre: 'Ana', fecha: '2023-10-27' },
+    { servicio: 'aseo', nombre: 'Pablo', fecha: '2023-10-28' },
+    { servicio: 'electricista', nombre: 'Roberto', fecha: '2023-10-24' },
+    { servicio: 'electricista', nombre: 'Elena', fecha: '2023-10-25' },
+    { servicio: 'electricista', nombre: 'Javier', fecha: '2023-10-26' },
+    { servicio: 'electricista', nombre: 'Isabel', fecha: '2023-10-27' },
+    { servicio: 'electricista', nombre: 'Santiago', fecha: '2023-10-28' },
+    { servicio: 'tecnico', nombre: 'María', fecha: '2023-10-24' },
+    { servicio: 'tecnico', nombre: 'Adrián', fecha: '2023-10-25' },
+    { servicio: 'tecnico', nombre: 'Lucía', fecha: '2023-10-26' },
+    { servicio: 'tecnico', nombre: 'Daniel', fecha: '2023-10-27' },
+    { servicio: 'tecnico', nombre: 'Laura', fecha: '2023-10-28' },
+    { servicio: 'gasfiteria', nombre: 'Lorenzo', fecha: '2023-10-24' },
+    { servicio: 'gasfiteria', nombre: 'Verónica', fecha: '2023-10-25' },
+    { servicio: 'gasfiteria', nombre: 'Hugo', fecha: '2023-10-26' },
+    { servicio: 'gasfiteria', nombre: 'Sofía', fecha: '2023-10-27' },
+    { servicio: 'gasfiteria', nombre: 'Diego', fecha: '2023-10-28' },
+    { servicio: 'jardineria', nombre: 'Lucas', fecha: '2023-10-24' },
+    { servicio: 'jardineria', nombre: 'Valentina', fecha: '2023-10-25' },
+    { servicio: 'jardineria', nombre: 'Mateo', fecha: '2023-10-26' },
+    { servicio: 'jardineria', nombre: 'Camila', fecha: '2023-10-27' },
+    { servicio: 'jardineria', nombre: 'Olivia', fecha: '2023-10-28' }
 ];
 
 const ServicioDetalle = () => {
@@ -34,13 +54,11 @@ const ServicioDetalle = () => {
 
     return (
         <div className='AppBar'><Navbar />
-            <br />
-            <br />
-
+            <LoadingScreen />
             <div className="container">
                 <h2>Trabajadores disponibles de {servicio}</h2>
                 <div id="hora_div" >
-                    <h2>Selecciona una hora para solicitar un trabajador</h2>
+                    <p>Selecciona una hora para solicitar un trabajador</p>
                     <label htmlFor="hora">Hora: </label>
                     <input
                         type="time"

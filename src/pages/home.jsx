@@ -36,7 +36,6 @@ function Home() {
                 <button className="myButton" onClick={handleSolicitarClick}>
                     Solicitar Servicio
                 </button>
-                <br />
                 <button className="myButton" onClick={handleOfrecerClick}>
                     Ofrecer Servicio
                 </button>

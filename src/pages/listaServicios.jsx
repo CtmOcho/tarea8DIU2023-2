@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../stylesheets/styles.css';
 import Navbar from '../components/Appbar';
@@ -32,6 +32,15 @@ const data = [
     { servicio: 'jardineria', nombre: 'Olivia', fecha: '2023-10-28' }
 ];
 
+
+function formatDateToDDMMYYYY(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Agrega 1 ya que en JavaScript los meses van de 0 a 11
+    const year = date.getFullYear();
+    return `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
+  }
+  
 const ServicioDetalle = () => {
     const [hora, setHora] = useState('');
 
@@ -39,11 +48,14 @@ const ServicioDetalle = () => {
     const servicio = params.get('servicio');
     const nombreUsuario = params.get('nombre');
     const accion = params.get('accion');
-
     // Función para actualizar el estado cuando cambia la hora
     const handleHoraChange = (event) => {
         setHora(event.target.value);
     }
+    useEffect(() => {
+        const nombreUsuarioSpan = document.getElementById('nombre-usuario');
+        nombreUsuarioSpan.textContent = nombreUsuario;
+      }, [nombreUsuario]);
 
     // Filtra la lista según el servicio pasado por URL
     const serviciosFiltrados = data.filter(item => item.servicio === servicio);
@@ -56,6 +68,7 @@ const ServicioDetalle = () => {
         <div className='AppBar'><Navbar />
             <LoadingScreen />
             <div className="container">
+                <h2>¡Hola, <span id="nombre-usuario"></span>!</h2>
                 <h2>Trabajadores disponibles de {servicio}</h2>
                 <div id="hora_div" >
                     <p>Selecciona una hora para solicitar un trabajador</p>
@@ -79,12 +92,12 @@ const ServicioDetalle = () => {
                         {serviciosFiltrados.map((servicio, index) => (
                             <tr key={index}>
                                 <td>{servicio.nombre}</td>
-                                <td>{servicio.fecha}</td>
+                                <td>{formatDateToDDMMYYYY(servicio.fecha)}</td>
                                 <td>
                                     <Link
                                         to={`/confirmacion?nombre=${nombreUsuario}&trabajador=${servicio.nombre}&fecha=${servicio.fecha}&servicio=${servicio.servicio}&accion=${accion}&hora=${hora}`}
                                     >
-                                        <button>Solicitar</button>
+                                        <button className='tabbleButton'>Solicitar</button>
                                     </Link>
                                 </td>
                             </tr>

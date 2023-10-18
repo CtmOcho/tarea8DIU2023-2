@@ -3,6 +3,8 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import '../stylesheets/styles.css';
 import Navbar from '../components/Appbar';
+import Swal from 'sweetalert2';
+
 
 function FormularioServicio() {
     const [nombreUsuario, setNombreUsuario] = useState('');
@@ -36,26 +38,43 @@ function FormularioServicio() {
             const usuario = nombreUsuario;
             const servic = servicio;
             let confirmacion;
-            let horaSeleccionada;
             if (accion === 'ofrecer') {
                 confirmacion = `Nombre: ${usuario}\nFecha: ${fechaSeleccionada}\nServicio: ${servic}\nAcción: ${accionConfirmacion}`;
-            } else {
-                horaSeleccionada = horaInput.value; soli
-                confirmacion = `Acción: ${accionConfirmacion}\nNombre: ${usuario}\nFecha: ${fechaSeleccionada}\nHora: ${horaSeleccionada}\nServicio: ${servic}`;
             }
-            const confirmado = window.confirm(`¿Estás seguro de estos datos?\n\n${confirmacion}`);
+            Swal.fire({
+                title: 'Confirmación de datos:\n'+confirmacion,
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: 'Sí',
+                denyButtonText: 'No',
+                background: '#c2d9ecf6',
+                color: '#003554',
+                confirmButtonColor: '#7AC74F',
+                succesColor: '#7AC74F',
+                allowEnterKey: true,
+                allowEscapeKey: true,
+                allowOutsideClick: true,
+                customClass: {
+                  actions: 'my-actions',
+                  confirmButton: 'order-3',
+                  denyButton: 'order-2',
 
-            if (confirmado) {
-                // Redirige a la página "4.html" con los valores confirmados en la URL
+                }
+              }).then((result) => {
                 let url;
                 if (accion === 'ofrecer') {
                     url = `/confirmacion?accion=${accion}&nombre=${nombreUsuario}&fecha=${fechaSeleccionada}&servicio=${servicio}`;
-                } else {
-
-                    url = `/confirmacion?accion=${accion}&nombre=${nombreUsuario}&fecha=${fechaSeleccionada}&hora=${horaSeleccionada}&servicio=${servicio}`;
+                } 
+                if (result.isConfirmed) {
+                  Swal.fire('Solicitud Ingresada!', '', 'success')
+                  setTimeout(() => {
+                    window.location.href = url;
+                  }, 2000);
+                } else if (result.isDenied) {
+                  Swal.fire('Solicitud No Ingresada', '', 'info')
                 }
-                window.location.href = url;
-            }
+              })
+
         };
 
         const solicitarBtn = document.getElementById('solicitar');
@@ -73,7 +92,7 @@ function FormularioServicio() {
                 </div>
                 <div id="hora_div" >
                     <label htmlFor="hora">Hora:</label>
-                    <input type="time" id="hora" value="24:00" />
+                    <input type="time" id="hora"  />
                 </div>
                 <button className="myButton" id="solicitar" ></button>
             </div>

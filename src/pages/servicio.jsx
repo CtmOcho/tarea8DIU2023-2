@@ -38,7 +38,6 @@ function SeleccionarServicio() {
     return (
         <div className='AppBar'><Navbar />
             <div className="container">
-                <br />
                 <h2>¡Hola, <span id="nombre-usuario"></span>!</h2>
                 <p>Estás <span id="accion"></span> un servicio</p>
                 <p>Selecciona el tipo de servicio:</p>

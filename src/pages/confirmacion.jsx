@@ -5,6 +5,16 @@ import { display } from '@mui/system';
 import Navbar from '../components/Appbar';
 import LoadingScreen from '../components/loadingScreen';
 
+
+function formatDateToDDMMYYYY(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1; // Agrega 1 ya que en JavaScript los meses van de 0 a 11
+    const year = date.getFullYear();
+    return `${day < 10 ? '0' : ''}${day}-${month < 10 ? '0' : ''}${month}-${year}`;
+  }
+  
+
 function ConfirmacionSolicitud() {
     useEffect(() => {
         // Obtener los valores de la URL
@@ -30,7 +40,7 @@ function ConfirmacionSolicitud() {
 
         document.getElementById('nombre').textContent = nombre;
         document.getElementById('servicio').textContent = servicio;
-        document.getElementById('fecha').textContent = fecha;
+        document.getElementById('fecha').textContent = formatDateToDDMMYYYY(fecha); // Formatea la fecha;
         document.getElementById('accion').textContent = accionConfirmacion;
 
 

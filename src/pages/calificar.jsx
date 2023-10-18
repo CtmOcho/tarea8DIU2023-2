@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../stylesheets/styles.css';
 import Navbar from '../components/Appbar';
+import LoadingScreen from '../components/loadingScreen';
 
 
 const data = [
@@ -24,6 +25,12 @@ const ServicioDetalle = () => {
     const [calificaciones, setCalificaciones] = useState({});
     const [serviciosCalificados, setServiciosCalificados] = useState([]);
 
+    useEffect(() => {
+        const nombreUsuarioSpan = document.getElementById('nombre-usuario');
+        nombreUsuarioSpan.textContent = nombreUsuario;
+      }, [nombreUsuario]);
+
+
     const handleClick = (index, valor, servicio) => {
         setCalificaciones(prevCalificaciones => ({
             ...prevCalificaciones,
@@ -42,7 +49,10 @@ const ServicioDetalle = () => {
     return (
         <div className='AppBar'>
             <Navbar />
+            <LoadingScreen />
+
             <div className="container">
+            <h2>¡Hola, <span id="nombre-usuario"></span>!</h2>
                 <h2>Calificaciones pendientes</h2>
                 <ToastContainer />
                 <table style={{width:"100%"}}>
@@ -74,7 +84,7 @@ const ServicioDetalle = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    <button onClick={() => handleCalificar(index, servicio)}>Calificar</button>
+                                    <button className='tabbleButton' onClick={() => handleCalificar(index, servicio)}>Calificar</button>
                                 </td>
                             </tr>
                         ))}

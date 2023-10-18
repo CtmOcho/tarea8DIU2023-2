@@ -1,4 +1,9 @@
 # Tarea8DIU2023-2
+Integrantes:
+- Leandro Espinoza 201973556-3
+- Daniel Herrera 2019735XX-X
+- Octavio Villablanca 201973532-2
+
 Tarea 8 - Prototipo React PMV
 Las 3 metas a evaluar en el PMV son las de:
 - Solicitar un servicio

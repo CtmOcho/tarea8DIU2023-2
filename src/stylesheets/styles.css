@@ -36,7 +36,7 @@ a {
 
 .cell {
   padding: 8px;
-  font-size: 14px;
+  font-size: large;
 }
 
 .myButton {
@@ -158,3 +158,74 @@ input {
 	border: 2px solid #007bff; /* Establece un borde en foco */
   }
   
+
+
+
+
+  .noButton {
+	background: linear-gradient(to bottom, red 5%, #FB5235 100%);
+	background-color: red;
+	border-radius: 12px;
+	border: 1px solid #FB5235;
+	display: inline-block;
+	height: min-content;
+	width: min-content;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-family: "Gabarito";
+	font-size: large;
+	padding: 6px 12px;
+	text-decoration: inherit;
+	text-shadow: 0px 1px 0px #FB5235;
+	margin: auto;
+	margin-right: 0.5em; /* Agrega el margen horizontal para separar los botones */
+  }
+  
+  .noButton:hover {
+	background: linear-gradient(to bottom, #FB5235 5%, red 100%);
+	background-color: #FB5235;
+  }
+  
+  .noButton:active {
+	position: relative;
+	top: 1px;
+  }
+
+
+
+  .okButton {
+	background: linear-gradient(to bottom, green 5%, #00b94d 100%);
+	background-color: green;
+	border-radius: 12px;
+	border: 1px solid #00b94d;
+	display: inline-block;
+	height: min-content;
+	width: min-content;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-family: "Gabarito";
+	font-size: large;
+	padding: 6px 12px;
+	text-decoration: inherit;
+	text-shadow: 0px 1px 0px #00b94d;
+	margin: auto;
+	margin-right: 0.5em; /* Agrega el margen horizontal para separar los botones */
+  }
+  
+  .okButton:hover {
+	background: linear-gradient(to bottom, #00b94d 5%, green 100%);
+	background-color: #FB5235;
+  }
+  
+  .okButton:active {
+	position: relative;
+	top: 1px;
+  }
+
+
+  .homeButtons { 
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	align-content: center;
+  }

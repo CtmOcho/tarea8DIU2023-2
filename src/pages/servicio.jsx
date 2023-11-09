@@ -21,17 +21,17 @@ function SeleccionarServicio() {
         const tecnicoLink = document.getElementById('tecnico-link');
         
         if (accion === 'solicitar') {
-            jardineriaLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=jardineria`;
-            gasfiteriaLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=gasfiteria`;
-            aseoLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=aseo`;
-            electricistaLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=electricista`;
-            tecnicoLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=tecnico`;
+            jardineriaLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=Jardineria`;
+            gasfiteriaLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=Gasfiteria`;
+            aseoLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=Aseo`;
+            electricistaLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=Electricista`;
+            tecnicoLink.href = `/listaServicios?nombre=${nombreUsuario}&accion=${accion}&servicio=Tecnico`;
         } else {
-            jardineriaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=jardineria`;
-            gasfiteriaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=gasfiteria`;
-            aseoLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=aseo`;
-            electricistaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=electricista`;
-            tecnicoLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=tecnico`;
+            jardineriaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=Jardineria`;
+            gasfiteriaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=Gasfiteria`;
+            aseoLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=Aseo`;
+            electricistaLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=Electricista`;
+            tecnicoLink.href = `/formulario?nombre=${nombreUsuario}&accion=${accion}&servicio=Tecnico`;
         }
     }, []);
 
@@ -70,7 +70,13 @@ function SeleccionarServicio() {
                         Técnico línea blanca
                     </myButton>
                 </a>
-            </div></div>
+            </div>
+            <p>
+                    <a href="/" className='homeButtons'>
+                        <button className="myButton" >Volver a inicio</button>
+                    </a>
+                </p>
+                </div>
     );
 }
 

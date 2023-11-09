@@ -3,33 +3,36 @@ import { Link } from 'react-router-dom';
 import '../stylesheets/styles.css';
 import Navbar from '../components/Appbar';
 import LoadingScreen from '../components/loadingScreen';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const data = [
-    { servicio: 'aseo', nombre: 'Luisa', fecha: '2023-10-24' },
-    { servicio: 'aseo', nombre: 'Marta', fecha: '2023-10-25' },
-    { servicio: 'aseo', nombre: 'Carlos', fecha: '2023-10-26' },
-    { servicio: 'aseo', nombre: 'Ana', fecha: '2023-10-27' },
-    { servicio: 'aseo', nombre: 'Pablo', fecha: '2023-10-28' },
-    { servicio: 'electricista', nombre: 'Roberto', fecha: '2023-10-24' },
-    { servicio: 'electricista', nombre: 'Elena', fecha: '2023-10-25' },
-    { servicio: 'electricista', nombre: 'Javier', fecha: '2023-10-26' },
-    { servicio: 'electricista', nombre: 'Isabel', fecha: '2023-10-27' },
-    { servicio: 'electricista', nombre: 'Santiago', fecha: '2023-10-28' },
-    { servicio: 'tecnico', nombre: 'María', fecha: '2023-10-24' },
-    { servicio: 'tecnico', nombre: 'Adrián', fecha: '2023-10-25' },
-    { servicio: 'tecnico', nombre: 'Lucía', fecha: '2023-10-26' },
-    { servicio: 'tecnico', nombre: 'Daniel', fecha: '2023-10-27' },
-    { servicio: 'tecnico', nombre: 'Laura', fecha: '2023-10-28' },
-    { servicio: 'gasfiteria', nombre: 'Lorenzo', fecha: '2023-10-24' },
-    { servicio: 'gasfiteria', nombre: 'Verónica', fecha: '2023-10-25' },
-    { servicio: 'gasfiteria', nombre: 'Hugo', fecha: '2023-10-26' },
-    { servicio: 'gasfiteria', nombre: 'Sofía', fecha: '2023-10-27' },
-    { servicio: 'gasfiteria', nombre: 'Diego', fecha: '2023-10-28' },
-    { servicio: 'jardineria', nombre: 'Lucas', fecha: '2023-10-24' },
-    { servicio: 'jardineria', nombre: 'Valentina', fecha: '2023-10-25' },
-    { servicio: 'jardineria', nombre: 'Mateo', fecha: '2023-10-26' },
-    { servicio: 'jardineria', nombre: 'Camila', fecha: '2023-10-27' },
-    { servicio: 'jardineria', nombre: 'Olivia', fecha: '2023-10-28' }
+    { servicio: 'Aseo', nombre: 'Luisa', fecha: '2023-11-24' },
+    { servicio: 'Aseo', nombre: 'Marta', fecha: '2023-11-25' },
+    { servicio: 'Aseo', nombre: 'Carlos', fecha: '2023-11-26' },
+    { servicio: 'Aseo', nombre: 'Ana', fecha: '2023-11-27' },
+    { servicio: 'Aseo', nombre: 'Pablo', fecha: '2023-11-28' },
+    { servicio: 'Electricista', nombre: 'Roberto', fecha: '2023-11-24' },
+    { servicio: 'Electricista', nombre: 'Elena', fecha: '2023-11-25' },
+    { servicio: 'Electricista', nombre: 'Javier', fecha: '2023-11-26' },
+    { servicio: 'Electricista', nombre: 'Isabel', fecha: '2023-11-27' },
+    { servicio: 'Electricista', nombre: 'Santiago', fecha: '2023-11-28' },
+    { servicio: 'Tecnico', nombre: 'María', fecha: '2023-11-24' },
+    { servicio: 'Tecnico', nombre: 'Adrián', fecha: '2023-11-25' },
+    { servicio: 'Tecnico', nombre: 'Lucía', fecha: '2023-11-26' },
+    { servicio: 'Tecnico', nombre: 'Daniel', fecha: '2023-11-27' },
+    { servicio: 'Tecnico', nombre: 'Laura', fecha: '2023-11-28' },
+    { servicio: 'Gasfiteria', nombre: 'Lorenzo', fecha: '2023-11-24' },
+    { servicio: 'Gasfiteria', nombre: 'Verónica', fecha: '2023-11-25' },
+    { servicio: 'Gasfiteria', nombre: 'Hugo', fecha: '2023-11-26' },
+    { servicio: 'Gasfiteria', nombre: 'Sofía', fecha: '2023-11-27' },
+    { servicio: 'Gasfiteria', nombre: 'Diego', fecha: '2023-11-28' },
+    { servicio: 'Jardineria', nombre: 'Lucas', fecha: '2023-11-24' },
+    { servicio: 'Jardineria', nombre: 'Valentina', fecha: '2023-11-25' },
+    { servicio: 'Jardineria', nombre: 'Mateo', fecha: '2023-11-26' },
+    { servicio: 'Jardineria', nombre: 'Camila', fecha: '2023-11-27' },
+    { servicio: 'Jardineria', nombre: 'Olivia', fecha: '2023-11-28' }
 ];
 
 
@@ -43,6 +46,8 @@ function formatDateToDDMMYYYY(dateString) {
   
 const ServicioDetalle = () => {
     const [hora, setHora] = useState('');
+    const [horaValida, setHoraValida] = useState(false);
+
 
     const params = new URLSearchParams(window.location.search);
     const servicio = params.get('servicio');
@@ -50,7 +55,23 @@ const ServicioDetalle = () => {
     const accion = params.get('accion');
     // Función para actualizar el estado cuando cambia la hora
     const handleHoraChange = (event) => {
-        setHora(event.target.value);
+        const horaIngresada = event.target.value;
+        // Verifica que la hora esté en el rango de 08:00 a 20:00
+        const horaValida = /^([0-1][0-9]|2[0]):[0-5][0-9]$/.test(horaIngresada);
+        setHora(horaIngresada);
+        setHoraValida(horaValida);
+
+    }
+
+    const handleSolicitarClick  = (trabajador, fecha, servicio) => {
+        if (horaValida) {
+            window.location.href = `/confirmacion?nombre=${nombreUsuario}&trabajador=${trabajador}&fecha=${fecha}&servicio=${servicio}&accion=${accion}&hora=${hora}`;
+        } else {
+            toast.error('Por favor, ingrese una hora válida', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500
+            });
+        }
     }
     useEffect(() => {
         const nombreUsuarioSpan = document.getElementById('nombre-usuario');
@@ -71,7 +92,9 @@ const ServicioDetalle = () => {
                 <h2>¡Hola, <span id="nombre-usuario"></span>!</h2>
                 <h2>Trabajadores disponibles de {servicio}</h2>
                 <div id="hora_div" >
+                    <ToastContainer />
                     <p>Selecciona una hora para solicitar un trabajador</p>
+                    <p>(Hora válida entre 08:00 y 20:00)</p>
                     <label htmlFor="hora">Hora: </label>
                     <input
                         type="time"
@@ -83,7 +106,7 @@ const ServicioDetalle = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>Nombre</th>
+                            <th>Trabajador</th>
                             <th>Fecha</th>
                             <th>Acciones</th>
                         </tr>
@@ -94,11 +117,8 @@ const ServicioDetalle = () => {
                                 <td>{servicio.nombre}</td>
                                 <td>{formatDateToDDMMYYYY(servicio.fecha)}</td>
                                 <td>
-                                    <Link
-                                        to={`/confirmacion?nombre=${nombreUsuario}&trabajador=${servicio.nombre}&fecha=${servicio.fecha}&servicio=${servicio.servicio}&accion=${accion}&hora=${hora}`}
-                                    >
-                                        <button className='tabbleButton'>Solicitar</button>
-                                    </Link>
+                                        <button className='tabbleButton'  onClick={() => handleSolicitarClick(servicio.nombre,servicio.fecha,servicio.servicio)}>Solicitar</button>
+                                    
                                 </td>
                             </tr>
                         ))}
@@ -106,6 +126,11 @@ const ServicioDetalle = () => {
                 </table>
 
             </div>
+            <p>
+                    <a href="/" className='homeButtons'>
+                        <button className="myButton" >Volver a inicio</button>
+                    </a>
+                </p>
         </div>
 
     );

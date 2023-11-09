@@ -7,7 +7,7 @@ import Formulario from '../pages/formularioServicio'
 import Confirmacion from '../pages/confirmacion'
 import ListaServicios from '../pages/listaServicios'
 import Calificacion from '../pages/calificar'
-
+import ConfirmarSolicitud from '../pages/confirmarSolicitudes'
 
 const AppRouter = () => {
   return (
@@ -19,6 +19,7 @@ const AppRouter = () => {
         <Route path='/confirmacion' element={<Confirmacion/>} />
         <Route path='/listaServicios' element={<ListaServicios/>} />
         <Route path='/calificar' element={<Calificacion/>} />
+        <Route path='/confirmar' element={<ConfirmarSolicitud/>} />
 
       </Routes>
     </BrowserRouter>

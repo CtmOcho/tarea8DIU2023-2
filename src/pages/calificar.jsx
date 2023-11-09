@@ -6,16 +6,14 @@ import '../stylesheets/styles.css';
 import Navbar from '../components/Appbar';
 import LoadingScreen from '../components/loadingScreen';
 
-
-const data = [
-    { servicio: 'jardineria', nombre: 'Pedro', fecha: '2023-10-17' },
-    { servicio: 'jardineria', nombre: 'Juan', fecha: '2023-10-18' },
-    { servicio: 'gasfiteria', nombre: 'Diego', fecha: '2023-10-19' },
-    { servicio: 'gasfiteria', nombre: 'Alonso', fecha: '2023-10-17' },
-    { servicio: 'aseo', nombre: 'Marta', fecha: '2023-10-18' },
-    { servicio: 'aseo', nombre: 'Maria', fecha: '2023-10-19' },
+const initialData = [
+    { servicio: 'Jardineria', nombre: 'Pedro', fecha: '2023-11-17' },
+    { servicio: 'Jardineria', nombre: 'Juan', fecha: '2023-11-18' },
+    { servicio: 'Gasfiteria', nombre: 'Diego', fecha: '2023-11-19' },
+    { servicio: 'Gasfiteria', nombre: 'Alonso', fecha: '2023-11-17' },
+    { servicio: 'Aseo', nombre: 'Marta', fecha: '2023-11-18' },
+    { servicio: 'Aseo', nombre: 'Maria', fecha: '2023-11-19' },
 ];
-
 
 function formatDateToDDMMYYYY(dateString) {
     const dateParts = dateString.split('-'); // Divide la cadena por guiones
@@ -23,48 +21,74 @@ function formatDateToDDMMYYYY(dateString) {
     const month = dateParts[1];
     const day = dateParts[2];
     return `${day}/${month}/${year}`;
-  }
-  
+}
 
 const ServicioDetalle = () => {
     const params = new URLSearchParams(window.location.search);
     const nombreUsuario = params.get('nombre');
-    const accion = params.get('accion');
 
     const [calificaciones, setCalificaciones] = useState({});
-    const [serviciosCalificados, setServiciosCalificados] = useState([]);
+    const [data, setData] = useState(initialData);
 
     useEffect(() => {
         const nombreUsuarioSpan = document.getElementById('nombre-usuario');
         nombreUsuarioSpan.textContent = nombreUsuario;
-      }, [nombreUsuario]);
-
+    }, [nombreUsuario]);
 
     const handleClick = (index, valor, servicio) => {
-        setCalificaciones(prevCalificaciones => ({
+        setCalificaciones((prevCalificaciones) => ({
             ...prevCalificaciones,
-            [index]: valor
+            [index]: valor,
         }));
     };
 
     const handleCalificar = (index, servicio) => {
-        setServiciosCalificados(prevServiciosCalificados => [...prevServiciosCalificados, servicio]);
-        toast.success('Calificación exitosa', {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 1500
-        });
+        const calificacion = calificaciones[index];
+
+        if (calificacion > 0) {
+            toast.success('Calificación exitosa', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500,
+            });
+
+            // Filtrar los servicios no calificados y establecer el nuevo estado
+            setTimeout(() => {
+                // Elimina la fila de datos
+                const newData = [...data];
+                newData.splice(index, 1);
+                setData(newData);  // Asume que tienes un estado setData para actualizar los datos
+                setCalificaciones((prevCalificaciones) => {
+                    const newCalificaciones = { ...prevCalificaciones };
+                    delete newCalificaciones[index];
+                    return newCalificaciones;
+                });
+            }, 2000);
+
+           
+        } else {
+            toast.error('Por favor, selecciona una calificación mayor a 0', {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500,
+            });
+        }
     };
 
+
+    const sortedData = [...data].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+
     return (
-        <div className='AppBar'>
+        <div className="AppBar">
             <Navbar />
             <LoadingScreen />
 
             <div className="container">
-            <h2>¡Hola, <span id="nombre-usuario"></span>!</h2>
+                <h2>
+                    ¡Hola, <span id="nombre-usuario"></span>!
+                </h2>
                 <h2>Calificaciones pendientes</h2>
                 <ToastContainer />
-                <table style={{width:"100%"}}>
+                <table style={{ width: '100%' }}>
                     <thead>
                         <tr>
                             <th className="cell">Nombre</th>
@@ -74,11 +98,11 @@ const ServicioDetalle = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((servicio, index) => (
+                        {sortedData.map((servicio, index) => (
                             <tr key={index}>
-                                <td className='cell'>{servicio.nombre}</td>
-                                <td className='cell'>{formatDateToDDMMYYYY(servicio.fecha)}</td>
-                                <td className='cell'>
+                                <td className="cell">{servicio.nombre}</td>
+                                <td className="cell">{formatDateToDDMMYYYY(servicio.fecha)}</td>
+                                <td className="cell">
                                     <div className="estrellas">
                                         {[1, 2, 3, 4, 5].map((valor) => (
                                             <span
@@ -93,17 +117,22 @@ const ServicioDetalle = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    <button className='tabbleButton' onClick={() => handleCalificar(index, servicio)}>Calificar</button>
+                                    <button className="tabbleButton" onClick={() => handleCalificar(index, servicio)}>
+                                        Calificar
+                                    </button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-
             </div>
+            <p>
+                <a href="/" className="homeButtons">
+                    <button className="myButton">Volver a inicio</button>
+                </a>
+            </p>
         </div>
     );
 };
 
 export default ServicioDetalle;
-
